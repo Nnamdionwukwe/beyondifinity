@@ -1,19 +1,131 @@
 import React, { useState, useEffect, useRef } from "react";
+import {
+  FaApple,
+  FaBatteryFull,
+  FaCar,
+  FaGift,
+  FaHeadphones,
+  FaMobileAlt,
+  FaPlug,
+  FaUsb,
+  FaSun,
+  FaMoon,
+  FaBars,
+  FaTimes,
+  FaMapMarkerAlt,
+  FaWhatsapp,
+  FaShieldAlt,
+  FaBoxes,
+  FaClock,
+} from "react-icons/fa";
 import styles from "./LandingPage.module.css";
+
+// Product Data with Realistic Images (Unsplash)
+const products = [
+  {
+    id: 1,
+    name: "iPhone Chargers",
+    desc: "Lightning · Fast charge · MFI certified",
+    icon: <FaApple />,
+    badge: "Popular",
+    image:
+      "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=400&h=300&fit=crop",
+  },
+  {
+    id: 2,
+    name: "Type-C Chargers",
+    desc: "PD 3.0 · 65W · For Android & Laptops",
+    icon: <FaUsb />,
+    badge: "Best Seller",
+    image:
+      "https://images.unsplash.com/photo-1626285861696-9f0bf5a49c6d?w=400&h=300&fit=crop",
+  },
+  {
+    id: 3,
+    name: "Power Banks",
+    desc: "10K–30K mAh · Fast charge · LED display",
+    icon: <FaBatteryFull />,
+    badge: "New",
+    image:
+      "https://images.unsplash.com/photo-1609592425321-7ba0976b91d2?w=400&h=300&fit=crop",
+  },
+  {
+    id: 4,
+    name: "Earbuds",
+    desc: "Bluetooth 5.3 · Noise cancelling · Premium sound",
+    icon: <FaHeadphones />,
+    badge: "Trending",
+    image:
+      "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=400&h=300&fit=crop",
+  },
+  {
+    id: 5,
+    name: "Phone Cases",
+    desc: "All models · Silicone · Rugged · Clear",
+    icon: <FaMobileAlt />,
+    badge: "Variety",
+    image:
+      "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=400&h=300&fit=crop",
+  },
+  {
+    id: 6,
+    name: "Car Chargers",
+    desc: "Dual USB · Fast charge · 12V/24V",
+    icon: <FaCar />,
+    badge: "On-the-Go",
+    image:
+      "https://images.unsplash.com/photo-1607807175418-75c9b7b2ddb3?w=400&h=300&fit=crop",
+  },
+  {
+    id: 7,
+    name: "Phone Holders",
+    desc: "Dashboard · Vent · Magnetic · Universal",
+    icon: <FaMapMarkerAlt />,
+    badge: "Essential",
+    image:
+      "https://images.unsplash.com/photo-1586178750936-8c9b1b7f2b0b?w=400&h=300&fit=crop",
+  },
+  {
+    id: 8,
+    name: "Bulk / Souvenirs",
+    desc: "Party gifts · Corporate · Occasions",
+    icon: <FaGift />,
+    badge: "Wholesale",
+    image:
+      "https://images.unsplash.com/photo-1513885535751-8b9238bd345a?w=400&h=300&fit=crop",
+  },
+];
 
 const LandingPage = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [theme, setTheme] = useState(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("theme");
+      return saved || "dark";
+    }
+    return "dark";
+  });
   const navbarRef = useRef(null);
 
-  // Navbar scroll effect
+  // Scroll handler
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 40);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 40);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Theme handler
+  useEffect(() => {
+    const root = document.documentElement;
+    if (theme === "light") {
+      root.classList.add("light-theme");
+      localStorage.setItem("theme", "light");
+    } else {
+      root.classList.remove("light-theme");
+      localStorage.setItem("theme", "dark");
+    }
+  }, [theme]);
 
   // Close nav on outside click
   useEffect(() => {
@@ -43,15 +155,12 @@ const LandingPage = () => {
             setTimeout(() => {
               entry.target.style.opacity = "1";
               entry.target.style.transform = "translateY(0)";
-            }, index * 60);
+            }, index * 80);
             observer.unobserve(entry.target);
           }
         });
       },
-      {
-        threshold: 0.12,
-        rootMargin: "0px 0px -40px 0px",
-      },
+      { threshold: 0.1, rootMargin: "0px 0px -40px 0px" },
     );
 
     revealElements.forEach((el) => {
@@ -59,15 +168,6 @@ const LandingPage = () => {
       el.style.transform = "translateY(30px)";
       el.style.transition =
         "opacity 0.7s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94)";
-      observer.observe(el);
-    });
-
-    // Also observe hero stats
-    const heroStats = document.querySelectorAll(`.${styles.heroStatNumber}`);
-    heroStats.forEach((el) => {
-      el.style.opacity = "0";
-      el.style.transform = "translateY(20px)";
-      el.style.transition = "opacity 0.8s ease, transform 0.8s ease";
       observer.observe(el);
     });
 
@@ -91,13 +191,17 @@ const LandingPage = () => {
 
   const toggleNav = () => setIsNavOpen(!isNavOpen);
   const closeNav = () => setIsNavOpen(false);
+  const toggleTheme = () =>
+    setTheme((prev) => (prev === "dark" ? "light" : "dark"));
 
   const whatsappLink =
     "https://wa.me/2349152847491?text=Hello%20GadgetHub%20%F0%9F%91%8B%2C%20I%20want%20to%20buy%20some%20phone%20accessories!";
   const mapLink = "https://maps.app.goo.gl/Qft8yYY927inBUKV6?g_st=ic";
 
   return (
-    <div className={styles.pageWrapper}>
+    <div
+      className={`${styles.pageWrapper} ${theme === "light" ? styles.lightTheme : ""}`}
+    >
       {/* Glow Orbs */}
       <div className={`${styles.glowOrb} ${styles.glowOrb1}`}></div>
       <div className={`${styles.glowOrb} ${styles.glowOrb2}`}></div>
@@ -138,6 +242,19 @@ const LandingPage = () => {
               </a>
             </li>
             <li>
+              <button
+                className={`${styles.themeToggle} ${theme === "light" ? styles.light : ""}`}
+                onClick={toggleTheme}
+                aria-label="Toggle theme"
+              >
+                <span className={styles.toggleTrack}>
+                  <FaSun />
+                  <FaMoon />
+                </span>
+                <span className={styles.toggleThumb}></span>
+              </button>
+            </li>
+            <li>
               <a
                 href={whatsappLink}
                 target="_blank"
@@ -145,7 +262,7 @@ const LandingPage = () => {
                 className={styles.navbarCta}
                 onClick={closeNav}
               >
-                📲 Buy Now
+                <FaWhatsapp /> Buy Now
               </a>
             </li>
           </ul>
@@ -155,9 +272,7 @@ const LandingPage = () => {
             onClick={toggleNav}
             aria-label="Toggle navigation"
           >
-            <span></span>
-            <span></span>
-            <span></span>
+            {isNavOpen ? <FaTimes /> : <FaBars />}
           </button>
         </div>
       </nav>
@@ -166,25 +281,21 @@ const LandingPage = () => {
       <section className={styles.hero} id="hero">
         <div className={styles.container}>
           <div className={styles.heroGrid}>
-            {/* Left Content */}
             <div className={styles.heroContent}>
               <div className={styles.heroBadge}>
                 <span className={styles.heroBadgeDot}></span>
                 Abuja's #1 Gadget Store
               </div>
-
               <h1 className={styles.heroTitle}>
                 Your <span className={styles.highlight}>One-Stop</span>
                 <br />
                 Phone Accessory Hub
               </h1>
-
               <p className={styles.heroDesc}>
                 Premium chargers, cases, power banks, earbuds &amp; more — for
                 iPhone, Android, and everything in between. Retail &amp; bulk
                 available.
               </p>
-
               <div className={styles.heroActions}>
                 <a
                   href={whatsappLink}
@@ -192,7 +303,7 @@ const LandingPage = () => {
                   rel="noopener noreferrer"
                   className={`${styles.btn} ${styles.btnWhatsapp}`}
                 >
-                  <span>📲</span> Buy on WhatsApp
+                  <FaWhatsapp /> Buy on WhatsApp
                 </a>
                 <a
                   href="#products"
@@ -201,7 +312,6 @@ const LandingPage = () => {
                   Explore Products →
                 </a>
               </div>
-
               <div className={styles.heroStats}>
                 <div>
                   <div className={styles.heroStatNumber}>500+</div>
@@ -218,36 +328,39 @@ const LandingPage = () => {
               </div>
             </div>
 
-            {/* Right – Floating Cards */}
             <div className={styles.heroVisual}>
               <div className={styles.heroVisualOrb}></div>
               <div className={styles.heroFloatingCards}>
                 <div className={styles.heroFloatCard}>
-                  <span className={styles.heroFloatIcon}>🔌</span>
+                  <span className={styles.heroFloatIcon}>
+                    <FaPlug />
+                  </span>
                   <span className={styles.heroFloatText}>
-                    All Chargers
-                    <small>Type-C · Lightning · Car</small>
+                    All Chargers <small>Type-C · Lightning · Car</small>
                   </span>
                 </div>
                 <div className={styles.heroFloatCard}>
-                  <span className={styles.heroFloatIcon}>📱</span>
+                  <span className={styles.heroFloatIcon}>
+                    <FaMobileAlt />
+                  </span>
                   <span className={styles.heroFloatText}>
-                    Phone Cases
-                    <small>All models &amp; colors</small>
+                    Phone Cases <small>All models &amp; colors</small>
                   </span>
                 </div>
                 <div className={styles.heroFloatCard}>
-                  <span className={styles.heroFloatIcon}>🎧</span>
+                  <span className={styles.heroFloatIcon}>
+                    <FaHeadphones />
+                  </span>
                   <span className={styles.heroFloatText}>
-                    Earbuds
-                    <small>Wireless · Premium sound</small>
+                    Earbuds <small>Wireless · Premium sound</small>
                   </span>
                 </div>
                 <div className={styles.heroFloatCard}>
-                  <span className={styles.heroFloatIcon}>🔋</span>
+                  <span className={styles.heroFloatIcon}>
+                    <FaBatteryFull />
+                  </span>
                   <span className={styles.heroFloatText}>
-                    Power Banks
-                    <small>Fast charge · 20,000mAh</small>
+                    Power Banks <small>Fast charge · 20,000mAh</small>
                   </span>
                 </div>
               </div>
@@ -272,77 +385,26 @@ const LandingPage = () => {
               target="_blank"
               rel="noopener noreferrer"
               className={`${styles.btn} ${styles.btnPrimary}`}
-              style={{ padding: "12px 28px", fontSize: "0.85rem" }}
             >
               View All →
             </a>
           </div>
 
           <div className={styles.productsGrid}>
-            <div className={styles.productCard}>
-              <span className={styles.productCardIcon}>🔌</span>
-              <div className={styles.productCardName}>iPhone Chargers</div>
-              <div className={styles.productCardDesc}>
-                Lightning · Fast charge · MFI certified
+            {products.map((product) => (
+              <div key={product.id} className={styles.productCard}>
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className={styles.productImage}
+                  loading="lazy"
+                />
+                <span className={styles.productCardIcon}>{product.icon}</span>
+                <div className={styles.productCardName}>{product.name}</div>
+                <div className={styles.productCardDesc}>{product.desc}</div>
+                <span className={styles.productCardBadge}>{product.badge}</span>
               </div>
-              <span className={styles.productCardBadge}>Popular</span>
-            </div>
-            <div className={styles.productCard}>
-              <span className={styles.productCardIcon}>⚡</span>
-              <div className={styles.productCardName}>Type-C Chargers</div>
-              <div className={styles.productCardDesc}>
-                PD 3.0 · 65W · For Android &amp; laptops
-              </div>
-              <span className={styles.productCardBadge}>Best Seller</span>
-            </div>
-            <div className={styles.productCard}>
-              <span className={styles.productCardIcon}>🔋</span>
-              <div className={styles.productCardName}>Power Banks</div>
-              <div className={styles.productCardDesc}>
-                10K–30K mAh · Fast charge · LED
-              </div>
-              <span className={styles.productCardBadge}>New</span>
-            </div>
-            <div className={styles.productCard}>
-              <span className={styles.productCardIcon}>🎧</span>
-              <div className={styles.productCardName}>Earbuds</div>
-              <div className={styles.productCardDesc}>
-                Bluetooth 5.3 · Noise cancelling
-              </div>
-              <span className={styles.productCardBadge}>Trending</span>
-            </div>
-            <div className={styles.productCard}>
-              <span className={styles.productCardIcon}>📱</span>
-              <div className={styles.productCardName}>Phone Cases</div>
-              <div className={styles.productCardDesc}>
-                All models · Silicone · Rugged · Clear
-              </div>
-              <span className={styles.productCardBadge}>Variety</span>
-            </div>
-            <div className={styles.productCard}>
-              <span className={styles.productCardIcon}>🚗</span>
-              <div className={styles.productCardName}>Car Chargers</div>
-              <div className={styles.productCardDesc}>
-                Dual USB · Fast charge · 12V/24V
-              </div>
-              <span className={styles.productCardBadge}>On-the-Go</span>
-            </div>
-            <div className={styles.productCard}>
-              <span className={styles.productCardIcon}>📀</span>
-              <div className={styles.productCardName}>Phone Holders</div>
-              <div className={styles.productCardDesc}>
-                Dashboard · Vent · Magnetic
-              </div>
-              <span className={styles.productCardBadge}>Essential</span>
-            </div>
-            <div className={styles.productCard}>
-              <span className={styles.productCardIcon}>🎁</span>
-              <div className={styles.productCardName}>Bulk / Souvenirs</div>
-              <div className={styles.productCardDesc}>
-                Party gifts · Corporate · Occasions
-              </div>
-              <span className={styles.productCardBadge}>Wholesale</span>
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -351,7 +413,7 @@ const LandingPage = () => {
       <section className={styles.features} id="features">
         <div className={styles.container}>
           <div style={{ textAlign: "center", marginBottom: "8px" }}>
-            <span className={styles.sectionTag}>🌟 Why GadgetHub</span>
+            <span className={styles.sectionTag}>🌟 Why Beyond Infinity</span>
             <h2
               className={styles.sectionTitle}
               style={{
@@ -380,7 +442,9 @@ const LandingPage = () => {
 
           <div className={styles.featuresGrid}>
             <div className={styles.featureItem}>
-              <span className={styles.featureItemIcon}>🛡️</span>
+              <span className={styles.featureItemIcon}>
+                <FaShieldAlt />
+              </span>
               <div className={styles.featureItemTitle}>100% Genuine</div>
               <div className={styles.featureItemDesc}>
                 All products sourced from trusted brands with authenticity
@@ -388,7 +452,9 @@ const LandingPage = () => {
               </div>
             </div>
             <div className={styles.featureItem}>
-              <span className={styles.featureItemIcon}>📦</span>
+              <span className={styles.featureItemIcon}>
+                <FaBoxes />
+              </span>
               <div className={styles.featureItemTitle}>Bulk &amp; Retail</div>
               <div className={styles.featureItemDesc}>
                 Buy single pieces or bulk — perfect for gifts, events, and
@@ -396,24 +462,28 @@ const LandingPage = () => {
               </div>
             </div>
             <div className={styles.featureItem}>
-              <span className={styles.featureItemIcon}>📍</span>
+              <span className={styles.featureItemIcon}>
+                <FaMapMarkerAlt />
+              </span>
               <div className={styles.featureItemTitle}>GSM Village Abuja</div>
               <div className={styles.featureItemDesc}>
                 Located at Zone 1, Obasanjo Express Way — visit us anytime.
               </div>
             </div>
             <div className={styles.featureItem}>
-              <span className={styles.featureItemIcon}>💬</span>
-              <div className={styles.featureItemTitle}>24/7 WhatsApp</div>
+              <span className={styles.featureItemIcon}>
+                <FaClock />
+              </span>
+              <div className={styles.featureItemTitle}>24/7 Support</div>
               <div className={styles.featureItemDesc}>
-                Chat with us anytime. Fast replies, same-day pickup available.
+                Chat with us anytime via WhatsApp. Same-day pickup available.
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ====== BULK / SPECIALS ====== */}
+      {/* ====== BULK ====== */}
       <section className={styles.bulk} id="bulk">
         <div className={styles.container}>
           <div className={styles.bulkInner}>
@@ -456,9 +526,8 @@ const LandingPage = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`${styles.btn} ${styles.btnPrimary}`}
-                style={{ padding: "18px 44px" }}
               >
-                📦 Request Bulk Quote
+                <FaWhatsapp /> Request Bulk Quote
               </a>
             </div>
           </div>
@@ -493,7 +562,7 @@ const LandingPage = () => {
                 Open Monday – Saturday · 9AM – 7PM
               </p>
               <a href="tel:+2349152847491" className={styles.phone}>
-                <span>📞</span> +234 915 284 7491
+                <FaWhatsapp /> +234 915 284 7491
               </a>
               <div
                 style={{
@@ -508,7 +577,6 @@ const LandingPage = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`${styles.btn} ${styles.btnSecondary}`}
-                  style={{ padding: "12px 28px", fontSize: "0.85rem" }}
                 >
                   🗺️ Open in Google Maps
                 </a>
@@ -517,20 +585,18 @@ const LandingPage = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`${styles.btn} ${styles.btnWhatsapp}`}
-                  style={{ padding: "12px 28px", fontSize: "0.85rem" }}
                 >
-                  💬 Chat on WhatsApp
+                  <FaWhatsapp /> Chat on WhatsApp
                 </a>
               </div>
             </div>
-
             <div className={styles.locationMap}>
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3939.999!2d7.5!3d9.05!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zOcKwMDMnMDAuMCJOIDfCsDMwJzAwLjAiRQ!5e0!3m2!1sen!2sng!4v1700000000000"
                 allowFullScreen=""
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="GadgetHub Location Map"
+                title="Beyond Infinity Location Map"
               ></iframe>
             </div>
           </div>
@@ -564,9 +630,8 @@ const LandingPage = () => {
               target="_blank"
               rel="noopener noreferrer"
               className={`${styles.btn} ${styles.btnWhatsapp}`}
-              style={{ padding: "18px 50px", fontSize: "1.05rem" }}
             >
-              📲 Buy Now — WhatsApp
+              <FaWhatsapp /> Buy Now — WhatsApp
             </a>
           </div>
         </div>
@@ -589,7 +654,7 @@ const LandingPage = () => {
                 rel="noopener noreferrer"
                 aria-label="WhatsApp"
               >
-                💬
+                <FaWhatsapp />
               </a>
               <a
                 href={mapLink}
@@ -597,10 +662,10 @@ const LandingPage = () => {
                 rel="noopener noreferrer"
                 aria-label="Google Maps"
               >
-                📍
+                <FaMapMarkerAlt />
               </a>
               <a href="tel:+2349152847491" aria-label="Phone">
-                📞
+                <FaMobileAlt />
               </a>
             </div>
           </div>
