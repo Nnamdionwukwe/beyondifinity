@@ -20,7 +20,7 @@ import {
 } from "react-icons/fa";
 import styles from "./LandingPage.module.css";
 
-// Product Data with Realistic Images (Unsplash)
+// Product Data with Realistic Images
 const products = [
   {
     id: 1,
@@ -115,14 +115,13 @@ const LandingPage = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Theme handler
+  // Theme handler - simply apply class to body
   useEffect(() => {
-    const root = document.documentElement;
     if (theme === "light") {
-      root.classList.add("light-theme");
+      document.body.classList.add("light-theme");
       localStorage.setItem("theme", "light");
     } else {
-      root.classList.remove("light-theme");
+      document.body.classList.remove("light-theme");
       localStorage.setItem("theme", "dark");
     }
   }, [theme]);
@@ -199,9 +198,7 @@ const LandingPage = () => {
   const mapLink = "https://maps.app.goo.gl/Qft8yYY927inBUKV6?g_st=ic";
 
   return (
-    <div
-      className={`${styles.pageWrapper} ${theme === "light" ? styles.lightTheme : ""}`}
-    >
+    <div className={styles.pageWrapper}>
       {/* Glow Orbs */}
       <div className={`${styles.glowOrb} ${styles.glowOrb1}`}></div>
       <div className={`${styles.glowOrb} ${styles.glowOrb2}`}></div>
