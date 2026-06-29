@@ -1,5 +1,5 @@
 /* ============================================================
-   LANDING PAGE CSS MODULES - FIXED LAYOUT
+   LANDING PAGE CSS MODULES - FIXED (NO :GLOBAL)
    ============================================================ */
 
 /* ---------- GLOBAL RESET ---------- */
@@ -13,9 +13,12 @@ html,
 body {
   width: 100%;
   overflow-x: hidden;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
 }
 
-/* ---------- GLOBAL VARIABLES (DARK) ---------- */
+/* ---------- DARK THEME (DEFAULT) ---------- */
 :root {
   --bg-primary: #0a0a0f;
   --bg-secondary: #12121a;
@@ -36,8 +39,8 @@ body {
   --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* ---------- LIGHT THEME ---------- */
-.lightTheme {
+/* ---------- LIGHT THEME (applied to body) ---------- */
+body.light-theme {
   --bg-primary: #f4f6f9;
   --bg-secondary: #ffffff;
   --bg-card: rgba(0, 0, 0, 0.02);
@@ -52,46 +55,131 @@ body {
   --shadow-glow: 0 8px 40px rgba(90, 75, 209, 0.15);
 }
 
-.lightTheme .navbar {
+/* Light theme component overrides */
+body.light-theme .navbar {
   background: rgba(255, 255, 255, 0.85);
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
-.lightTheme .navbar.scrolled {
+body.light-theme .navbar.scrolled {
   background: rgba(255, 255, 255, 0.95);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
 }
-.lightTheme .heroFloatCard {
+body.light-theme .heroFloatCard {
   background: rgba(255, 255, 255, 0.8);
   border: 1px solid rgba(0, 0, 0, 0.06);
 }
-.lightTheme .productCard {
+body.light-theme .productCard {
   background: #ffffff;
   border: 1px solid #e9ecef;
 }
-.lightTheme .productCard:hover {
+body.light-theme .productCard:hover {
   border-color: var(--accent-1);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.05);
 }
-.lightTheme .featureItem {
+body.light-theme .featureItem {
   background: #ffffff;
   border: 1px solid #e9ecef;
 }
-.lightTheme .bulkInner {
+body.light-theme .bulkInner {
   background: #ffffff;
   border: 1px solid #e9ecef;
 }
-.lightTheme .ctaBannerInner {
+body.light-theme .ctaBannerInner {
   background: #ffffff;
   border: 1px solid #e9ecef;
 }
-.lightTheme .locationMap {
+body.light-theme .locationMap {
   border: 1px solid #e9ecef;
 }
-.lightTheme .footer {
+body.light-theme .footer {
   border-top: 1px solid #e9ecef;
 }
-.lightTheme .glowOrb {
+body.light-theme .glowOrb {
   opacity: 0.08;
+}
+body.light-theme .navbarLinks a {
+  color: var(--text-secondary);
+}
+body.light-theme .navbarLinks a:hover {
+  color: var(--text-primary);
+}
+body.light-theme .navbarHamburger {
+  color: var(--text-primary);
+}
+body.light-theme .themeToggle {
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+body.light-theme .toggleTrack {
+  color: var(--text-secondary);
+}
+body.light-theme .btnSecondary {
+  background: rgba(0, 0, 0, 0.04);
+  color: var(--text-primary);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+body.light-theme .btnSecondary:hover {
+  background: rgba(0, 0, 0, 0.08);
+}
+body.light-theme .carouselBtn {
+  background: rgba(0, 0, 0, 0.15);
+  color: var(--text-primary);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+body.light-theme .carouselBtn:hover {
+  background: var(--accent-gradient);
+  color: #fff;
+}
+body.light-theme .dot {
+  background: rgba(0, 0, 0, 0.2);
+}
+body.light-theme .dot.active {
+  background: var(--accent-1);
+  box-shadow: 0 0 12px rgba(90, 75, 209, 0.4);
+}
+body.light-theme .navbarBrandLogo {
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+body.light-theme .navbarBrand {
+  color: var(--text-primary);
+}
+body.light-theme .productCardBadge {
+  color: var(--accent-2);
+  background: rgba(0, 206, 201, 0.08);
+  border: 1px solid rgba(0, 206, 201, 0.1);
+}
+body.light-theme .sectionTag {
+  color: var(--accent-2);
+  background: rgba(0, 206, 201, 0.12);
+  border: 1px solid rgba(0, 206, 201, 0.15);
+}
+body.light-theme .heroBadge {
+  background: rgba(0, 206, 201, 0.08);
+  border: 1px solid rgba(0, 206, 201, 0.15);
+  color: var(--accent-2);
+}
+body.light-theme .heroFloatIcon {
+  background: rgba(108, 92, 231, 0.1);
+}
+body.light-theme .bulkTag {
+  background: rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  color: var(--text-secondary);
+}
+body.light-theme .phone {
+  color: var(--accent-2);
+}
+body.light-theme .phone:hover {
+  color: var(--text-primary);
+}
+body.light-theme .footerBrand span {
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 /* ---------- PAGE WRAPPER ---------- */
@@ -652,78 +740,153 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 20px;
+  margin-top: 48px;
 }
 
-.productCard {
+/* ---------- CAROUSEL ---------- */
+.carouselWrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: var(--bg-secondary);
+  margin-bottom: 20px;
+  box-shadow: var(--shadow-glow);
+  border: 1px solid var(--border-glass);
+}
+
+.carouselTrack {
+  display: flex;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
+}
+
+.carouselSlide {
+  min-width: 100%;
+  padding: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Product Card inside Carousel */
+.carouselSlide .productCard {
+  max-width: 400px;
+  margin: 0 auto;
+  width: 100%;
   background: var(--bg-card);
   border: 1px solid var(--border-glass);
   border-radius: var(--radius-md);
-  padding: 16px 12px 20px;
+  padding: 24px 20px 28px;
   text-align: center;
   transition: var(--transition);
-  position: relative;
-  overflow: hidden;
   backdrop-filter: blur(4px);
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.productCard::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: var(--accent-gradient);
-  opacity: 0;
-  transition: var(--transition);
-}
-.productCard:hover {
-  transform: translateY(-6px);
-  border-color: rgba(108, 92, 231, 0.2);
+.carouselSlide .productCard:hover {
+  transform: translateY(-4px);
+  border-color: rgba(108, 92, 231, 0.3);
   box-shadow: 0 12px 48px rgba(0, 0, 0, 0.3);
 }
-.productCard:hover::before {
-  opacity: 1;
-}
-
-.productImage {
+.carouselSlide .productImage {
   width: 100%;
-  height: 140px;
+  max-height: 220px;
   object-fit: cover;
   border-radius: var(--radius-sm);
-  margin-bottom: 14px;
+  margin-bottom: 16px;
   background: var(--bg-secondary);
 }
-
-.productCardIcon {
-  font-size: 1.6rem;
-  margin-bottom: 6px;
+.carouselSlide .productCardIcon {
+  font-size: 1.8rem;
+  margin-bottom: 8px;
   color: var(--accent-1);
 }
-.productCardName {
+.carouselSlide .productCardName {
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: 1.1rem;
   margin-bottom: 4px;
 }
-.productCardDesc {
-  font-size: 0.75rem;
+.carouselSlide .productCardDesc {
+  font-size: 0.85rem;
   color: var(--text-muted);
   line-height: 1.4;
 }
-.productCardBadge {
+.carouselSlide .productCardBadge {
   display: inline-block;
-  margin-top: 10px;
-  font-size: 0.6rem;
+  margin-top: 12px;
+  font-size: 0.65rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--accent-2);
   background: rgba(0, 206, 201, 0.08);
-  padding: 4px 12px;
+  padding: 4px 14px;
   border-radius: 100px;
   border: 1px solid rgba(0, 206, 201, 0.1);
+}
+
+/* Carousel Buttons */
+.carouselBtn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: var(--transition);
+  padding: 0;
+}
+.carouselBtn:hover {
+  background: var(--accent-gradient);
+  transform: translateY(-50%) scale(1.05);
+  border-color: transparent;
+  box-shadow: 0 4px 20px rgba(108, 92, 231, 0.4);
+}
+.carouselBtnLeft {
+  left: 16px;
+}
+.carouselBtnRight {
+  right: 16px;
+}
+
+/* Carousel Dots */
+.carouselDots {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 10;
+}
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: var(--transition);
+  border: none;
+  padding: 0;
+}
+.dot.active {
+  background: #fff;
+  transform: scale(1.3);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
+}
+.dot:hover {
+  transform: scale(1.2);
 }
 
 /* ---------- FEATURES ---------- */
@@ -1027,11 +1190,17 @@ body {
   .locationInfo .phone {
     justify-content: center;
   }
+  .carouselSlide .productCard {
+    max-width: 320px;
+  }
+  .carouselSlide .productImage {
+    max-height: 180px;
+  }
 }
 
 /* ----- 768px and below (tablet / mobile) ----- */
 @media (max-width: 768px) {
-  /* Navbar: hide links by default, show hamburger */
+  /* Navbar */
   .navbarLinks {
     position: fixed;
     top: 0;
@@ -1050,7 +1219,7 @@ body {
     align-items: flex-start;
     overflow-y: auto;
   }
-  .lightTheme .navbarLinks {
+  body.light-theme .navbarLinks {
     background: rgba(255, 255, 255, 0.98);
     border-left: 1px solid rgba(0, 0, 0, 0.05);
   }
@@ -1097,6 +1266,35 @@ body {
   }
   .productImage {
     height: 110px;
+  }
+
+  /* Carousel */
+  .carouselBtn {
+    width: 36px;
+    height: 36px;
+    font-size: 1.2rem;
+  }
+  .carouselBtnLeft {
+    left: 8px;
+  }
+  .carouselBtnRight {
+    right: 8px;
+  }
+  .carouselSlide {
+    padding: 16px;
+  }
+  .carouselSlide .productCard {
+    max-width: 280px;
+    padding: 16px 12px 20px;
+  }
+  .carouselSlide .productImage {
+    max-height: 140px;
+  }
+  .carouselSlide .productCardName {
+    font-size: 0.95rem;
+  }
+  .carouselSlide .productCardDesc {
+    font-size: 0.75rem;
   }
 
   .bulkInner {
@@ -1171,6 +1369,36 @@ body {
   }
   .productCardDesc {
     font-size: 0.65rem;
+  }
+
+  /* Carousel Mobile */
+  .carouselBtn {
+    width: 30px;
+    height: 30px;
+    font-size: 1rem;
+  }
+  .carouselBtnLeft {
+    left: 4px;
+  }
+  .carouselBtnRight {
+    right: 4px;
+  }
+  .carouselSlide .productCard {
+    max-width: 220px;
+    padding: 12px 8px 16px;
+  }
+  .carouselSlide .productImage {
+    max-height: 100px;
+  }
+  .carouselSlide .productCardName {
+    font-size: 0.8rem;
+  }
+  .carouselSlide .productCardDesc {
+    font-size: 0.65rem;
+  }
+  .dot {
+    width: 8px;
+    height: 8px;
   }
 
   .btn {

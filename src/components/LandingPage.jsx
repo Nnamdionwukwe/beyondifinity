@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import {
   FaApple,
   FaBatteryFull,
@@ -20,8 +20,8 @@ import {
 } from "react-icons/fa";
 import styles from "./LandingPage.module.css";
 
-// Product Data with Realistic Images
-const products = [
+// Product Data with Realistic Images (Base Array)
+const baseProducts = [
   {
     id: 1,
     name: "iPhone Chargers",
@@ -96,6 +96,144 @@ const products = [
   },
 ];
 
+// Extended Product Array for the Carousel (Showcasing more items)
+const carouselProducts = [
+  ...baseProducts,
+  {
+    id: 9,
+    name: "Wireless Charger",
+    desc: "Qi-compatible · Fast charge · LED indicator",
+    icon: <FaPlug />,
+    badge: "New",
+    image:
+      "https://images.unsplash.com/photo-1617788138017-80ad40651399?w=400&h=300&fit=crop",
+  },
+  {
+    id: 10,
+    name: "Smart Watch",
+    desc: "Fitness tracker · AMOLED · GPS",
+    icon: <FaClock />,
+    badge: "Premium",
+    image:
+      "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=400&h=300&fit=crop",
+  },
+  {
+    id: 11,
+    name: "Bluetooth Speaker",
+    desc: "Portable · 360° sound · Waterproof",
+    icon: <FaHeadphones />,
+    badge: "Bestseller",
+    image:
+      "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400&h=300&fit=crop",
+  },
+];
+
+// ============================================================
+// IMAGE CAROUSEL COMPONENT
+// ============================================================
+const ImageCarousel = ({ items }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const intervalRef = useRef(null);
+  const [touchStartX, setTouchStartX] = useState(0);
+
+  const nextSlide = useCallback(() => {
+    setCurrentIndex((prev) => (prev + 1) % items.length);
+  }, [items.length]);
+
+  const prevSlide = useCallback(() => {
+    setCurrentIndex((prev) => (prev - 1 + items.length) % items.length);
+  }, [items.length]);
+
+  const goToSlide = (index) => {
+    setCurrentIndex(index);
+  };
+
+  // Autoplay logic
+  useEffect(() => {
+    if (isPaused) {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+      return;
+    }
+    intervalRef.current = setInterval(nextSlide, 4000);
+    return () => clearInterval(intervalRef.current);
+  }, [isPaused, nextSlide]);
+
+  // Touch events for mobile swipe
+  const handleTouchStart = (e) => {
+    setTouchStartX(e.touches[0].clientX);
+  };
+
+  const handleTouchEnd = (e) => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) nextSlide();
+      else prevSlide();
+    }
+  };
+
+  return (
+    <div
+      className={styles.carouselWrapper}
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
+      <div
+        className={styles.carouselTrack}
+        style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+      >
+        {items.map((product) => (
+          <div key={product.id} className={styles.carouselSlide}>
+            <div className={styles.productCard}>
+              <img
+                src={product.image}
+                alt={product.name}
+                className={styles.productImage}
+                loading="lazy"
+              />
+              <span className={styles.productCardIcon}>{product.icon}</span>
+              <div className={styles.productCardName}>{product.name}</div>
+              <div className={styles.productCardDesc}>{product.desc}</div>
+              <span className={styles.productCardBadge}>{product.badge}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <button
+        className={`${styles.carouselBtn} ${styles.carouselBtnLeft}`}
+        onClick={prevSlide}
+        aria-label="Previous slide"
+      >
+        ❮
+      </button>
+      <button
+        className={`${styles.carouselBtn} ${styles.carouselBtnRight}`}
+        onClick={nextSlide}
+        aria-label="Next slide"
+      >
+        ❯
+      </button>
+
+      <div className={styles.carouselDots}>
+        {items.map((_, index) => (
+          <button
+            key={index}
+            className={`${styles.dot} ${index === currentIndex ? styles.active : ""}`}
+            onClick={() => goToSlide(index)}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+// ============================================================
+// MAIN LANDING PAGE COMPONENT
+// ============================================================
 const LandingPage = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -115,7 +253,7 @@ const LandingPage = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Theme handler - simply apply class to body
+  // Theme handler
   useEffect(() => {
     if (theme === "light") {
       document.body.classList.add("light-theme");
@@ -144,7 +282,7 @@ const LandingPage = () => {
   // Intersection Observer for reveal animations
   useEffect(() => {
     const revealElements = document.querySelectorAll(
-      `.${styles.productCard}, .${styles.featureItem}, .${styles.heroFloatCard}, .${styles.bulkInner}, .${styles.locationGrid}, .${styles.ctaBannerInner}`,
+      `.${styles.featureItem}, .${styles.heroFloatCard}, .${styles.bulkInner}, .${styles.locationGrid}, .${styles.ctaBannerInner}`,
     );
 
     const observer = new IntersectionObserver(
@@ -372,9 +510,9 @@ const LandingPage = () => {
           <div className={styles.productsHeader}>
             <div>
               <span className={styles.sectionTag}>⚡ Premium Gear</span>
-              <h2 className={styles.sectionTitle}>Everything You Need</h2>
+              <h2 className={styles.sectionTitle}>Featured Products</h2>
               <p className={styles.sectionSub}>
-                From daily drivers to bulk party gifts — we've got you covered.
+                Explore our best-selling accessories and gadgets.
               </p>
             </div>
             <a
@@ -387,8 +525,12 @@ const LandingPage = () => {
             </a>
           </div>
 
+          {/* Slideable Carousel Section */}
+          <ImageCarousel items={carouselProducts} />
+
+          {/* Existing Grid Below (Optional, keeping it for completeness) */}
           <div className={styles.productsGrid}>
-            {products.map((product) => (
+            {baseProducts.map((product) => (
               <div key={product.id} className={styles.productCard}>
                 <img
                   src={product.image}
