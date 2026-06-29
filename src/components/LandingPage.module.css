@@ -1,24 +1,16 @@
-/* ============================================================
-   LANDING PAGE CSS MODULES - FIXED (NO :GLOBAL)
-   ============================================================ */
-
-/* ---------- GLOBAL RESET ---------- */
+/* ===== RESET ===== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-
 html,
 body {
   width: 100%;
   overflow-x: hidden;
-  transition:
-    background 0.3s ease,
-    color 0.3s ease;
 }
 
-/* ---------- DARK THEME (DEFAULT) ---------- */
+/* ===== DARK THEME (default) ===== */
 :root {
   --bg-primary: #0a0a0f;
   --bg-secondary: #12121a;
@@ -39,7 +31,7 @@ body {
   --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* ---------- LIGHT THEME (applied to body) ---------- */
+/* ===== LIGHT THEME (on body) ===== */
 body.light-theme {
   --bg-primary: #f4f6f9;
   --bg-secondary: #ffffff;
@@ -55,7 +47,6 @@ body.light-theme {
   --shadow-glow: 0 8px 40px rgba(90, 75, 209, 0.15);
 }
 
-/* Light theme component overrides */
 body.light-theme .navbar {
   background: rgba(255, 255, 255, 0.85);
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
@@ -97,30 +88,6 @@ body.light-theme .footer {
 body.light-theme .glowOrb {
   opacity: 0.08;
 }
-body.light-theme .navbarLinks a {
-  color: var(--text-secondary);
-}
-body.light-theme .navbarLinks a:hover {
-  color: var(--text-primary);
-}
-body.light-theme .navbarHamburger {
-  color: var(--text-primary);
-}
-body.light-theme .themeToggle {
-  background: rgba(0, 0, 0, 0.05);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-}
-body.light-theme .toggleTrack {
-  color: var(--text-secondary);
-}
-body.light-theme .btnSecondary {
-  background: rgba(0, 0, 0, 0.04);
-  color: var(--text-primary);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-}
-body.light-theme .btnSecondary:hover {
-  background: rgba(0, 0, 0, 0.08);
-}
 body.light-theme .carouselBtn {
   background: rgba(0, 0, 0, 0.15);
   color: var(--text-primary);
@@ -137,52 +104,8 @@ body.light-theme .dot.active {
   background: var(--accent-1);
   box-shadow: 0 0 12px rgba(90, 75, 209, 0.4);
 }
-body.light-theme .navbarBrandLogo {
-  background: var(--accent-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-body.light-theme .navbarBrand {
-  color: var(--text-primary);
-}
-body.light-theme .productCardBadge {
-  color: var(--accent-2);
-  background: rgba(0, 206, 201, 0.08);
-  border: 1px solid rgba(0, 206, 201, 0.1);
-}
-body.light-theme .sectionTag {
-  color: var(--accent-2);
-  background: rgba(0, 206, 201, 0.12);
-  border: 1px solid rgba(0, 206, 201, 0.15);
-}
-body.light-theme .heroBadge {
-  background: rgba(0, 206, 201, 0.08);
-  border: 1px solid rgba(0, 206, 201, 0.15);
-  color: var(--accent-2);
-}
-body.light-theme .heroFloatIcon {
-  background: rgba(108, 92, 231, 0.1);
-}
-body.light-theme .bulkTag {
-  background: rgba(0, 0, 0, 0.03);
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  color: var(--text-secondary);
-}
-body.light-theme .phone {
-  color: var(--accent-2);
-}
-body.light-theme .phone:hover {
-  color: var(--text-primary);
-}
-body.light-theme .footerBrand span {
-  background: var(--accent-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
 
-/* ---------- PAGE WRAPPER ---------- */
+/* ===== PAGE WRAPPER ===== */
 .pageWrapper {
   font-family:
     "Inter",
@@ -191,29 +114,16 @@ body.light-theme .footerBrand span {
     sans-serif;
   background: var(--bg-primary);
   color: var(--text-primary);
-  line-height: 1.6;
   min-height: 100vh;
+  transition:
+    background 0.3s,
+    color 0.3s;
+  width: 100%;
   position: relative;
   z-index: 0;
-  transition:
-    background 0.3s ease,
-    color 0.3s ease;
-  width: 100%;
 }
 
-/* ---------- SCROLLBAR ---------- */
-.pageWrapper::-webkit-scrollbar {
-  width: 6px;
-}
-.pageWrapper::-webkit-scrollbar-track {
-  background: var(--bg-primary);
-}
-.pageWrapper::-webkit-scrollbar-thumb {
-  background: var(--accent-1);
-  border-radius: 10px;
-}
-
-/* ---------- GLOW ORBS ---------- */
+/* ===== GLOW ORBS ===== */
 .glowOrb {
   position: fixed;
   border-radius: 50%;
@@ -222,7 +132,6 @@ body.light-theme .footerBrand span {
   pointer-events: none;
   z-index: 0;
   animation: orbFloat 18s ease-in-out infinite alternate;
-  transition: opacity 0.5s ease;
 }
 .glowOrb1 {
   width: 600px;
@@ -230,7 +139,6 @@ body.light-theme .footerBrand span {
   top: -200px;
   right: -200px;
   background: rgba(108, 92, 231, 0.35);
-  animation-delay: 0s;
 }
 .glowOrb2 {
   width: 500px;
@@ -238,7 +146,6 @@ body.light-theme .footerBrand span {
   bottom: -100px;
   left: -100px;
   background: rgba(0, 206, 201, 0.25);
-  animation-delay: -6s;
 }
 .glowOrb3 {
   width: 400px;
@@ -247,7 +154,6 @@ body.light-theme .footerBrand span {
   left: 50%;
   transform: translateX(-50%);
   background: rgba(253, 121, 168, 0.15);
-  animation-delay: -12s;
 }
 
 @keyframes orbFloat {
@@ -265,13 +171,12 @@ body.light-theme .footerBrand span {
   }
 }
 
-/* ---------- CONTAINER ---------- */
+/* ===== CONTAINER ===== */
 .container {
   max-width: 1280px;
   margin: 0 auto;
   padding: 0 20px;
 }
-
 @media (min-width: 768px) {
   .container {
     padding: 0 32px;
@@ -283,7 +188,7 @@ body.light-theme .footerBrand span {
   }
 }
 
-/* ---------- SECTION TAGS ---------- */
+/* ===== SECTION TAGS ===== */
 .sectionTag {
   display: inline-block;
   font-size: 0.75rem;
@@ -297,7 +202,6 @@ body.light-theme .footerBrand span {
   margin-bottom: 16px;
   border: 1px solid rgba(0, 206, 201, 0.15);
 }
-
 .sectionTitle {
   font-size: clamp(2rem, 4.5vw, 3.4rem);
   font-weight: 800;
@@ -308,7 +212,6 @@ body.light-theme .footerBrand span {
   background-clip: text;
   margin-bottom: 12px;
 }
-
 .sectionSub {
   font-size: 1.1rem;
   color: var(--text-secondary);
@@ -316,7 +219,7 @@ body.light-theme .footerBrand span {
   line-height: 1.7;
 }
 
-/* ---------- BUTTONS ---------- */
+/* ===== BUTTONS ===== */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -361,7 +264,7 @@ body.light-theme .footerBrand span {
   box-shadow: 0 12px 50px rgba(37, 211, 102, 0.45);
 }
 
-/* ---------- NAVBAR ---------- */
+/* ===== NAVBAR ===== */
 .navbar {
   position: fixed;
   top: 0;
@@ -373,8 +276,8 @@ body.light-theme .footerBrand span {
   backdrop-filter: blur(20px) saturate(1.2);
   border-bottom: 1px solid rgba(255, 255, 255, 0.04);
   transition:
-    background 0.3s ease,
-    box-shadow 0.3s ease;
+    background 0.3s,
+    box-shadow 0.3s;
 }
 .navbar.scrolled {
   background: rgba(10, 10, 15, 0.92);
@@ -486,7 +389,7 @@ body.light-theme .footerBrand span {
   z-index: 1001;
 }
 
-/* ---------- THEME TOGGLE ---------- */
+/* ===== THEME TOGGLE ===== */
 .themeToggle {
   background: var(--bg-glass);
   border: 1px solid var(--border-glass);
@@ -533,7 +436,7 @@ body.light-theme .footerBrand span {
   transform: translateX(24px);
 }
 
-/* ---------- HERO ---------- */
+/* ===== HERO ===== */
 .hero {
   padding: 140px 0 80px;
   position: relative;
@@ -579,7 +482,6 @@ body.light-theme .footerBrand span {
     transform: scale(0.7);
   }
 }
-
 .heroTitle {
   font-size: clamp(2.4rem, 6vw, 4.2rem);
   font-weight: 900;
@@ -593,7 +495,6 @@ body.light-theme .footerBrand span {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-
 .heroDesc {
   font-size: 1.1rem;
   color: var(--text-secondary);
@@ -655,7 +556,6 @@ body.light-theme .footerBrand span {
     transform: scale(1.15) rotate(8deg);
   }
 }
-
 .heroFloatingCards {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -692,7 +592,7 @@ body.light-theme .footerBrand span {
 }
 @keyframes floatUp {
   0% {
-    transform: translateY(0px);
+    transform: translateY(0);
   }
   100% {
     transform: translateY(-10px);
@@ -722,7 +622,7 @@ body.light-theme .footerBrand span {
   color: var(--text-muted);
 }
 
-/* ---------- PRODUCTS ---------- */
+/* ===== PRODUCTS ===== */
 .products {
   padding: 80px 0;
   position: relative;
@@ -743,7 +643,77 @@ body.light-theme .footerBrand span {
   margin-top: 48px;
 }
 
-/* ---------- CAROUSEL ---------- */
+.productCard {
+  background: var(--bg-card);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-md);
+  padding: 16px 12px 20px;
+  text-align: center;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(4px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.productCard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--accent-gradient);
+  opacity: 0;
+  transition: var(--transition);
+}
+.productCard:hover {
+  transform: translateY(-6px);
+  border-color: rgba(108, 92, 231, 0.2);
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.3);
+}
+.productCard:hover::before {
+  opacity: 1;
+}
+.productImage {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  margin-bottom: 14px;
+  background: var(--bg-secondary);
+}
+.productCardIcon {
+  font-size: 1.6rem;
+  margin-bottom: 6px;
+  color: var(--accent-1);
+}
+.productCardName {
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+}
+.productCardDesc {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+.productCardBadge {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent-2);
+  background: rgba(0, 206, 201, 0.08);
+  padding: 4px 12px;
+  border-radius: 100px;
+  border: 1px solid rgba(0, 206, 201, 0.1);
+}
+
+/* ===== CAROUSEL ===== */
 .carouselWrapper {
   position: relative;
   overflow: hidden;
@@ -753,13 +723,11 @@ body.light-theme .footerBrand span {
   box-shadow: var(--shadow-glow);
   border: 1px solid var(--border-glass);
 }
-
 .carouselTrack {
   display: flex;
   transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   will-change: transform;
 }
-
 .carouselSlide {
   min-width: 100%;
   padding: 24px;
@@ -767,8 +735,6 @@ body.light-theme .footerBrand span {
   justify-content: center;
   align-items: center;
 }
-
-/* Product Card inside Carousel */
 .carouselSlide .productCard {
   max-width: 400px;
   margin: 0 auto;
@@ -826,7 +792,6 @@ body.light-theme .footerBrand span {
   border: 1px solid rgba(0, 206, 201, 0.1);
 }
 
-/* Carousel Buttons */
 .carouselBtn {
   position: absolute;
   top: 50%;
@@ -860,7 +825,6 @@ body.light-theme .footerBrand span {
   right: 16px;
 }
 
-/* Carousel Dots */
 .carouselDots {
   position: absolute;
   bottom: 20px;
@@ -889,7 +853,7 @@ body.light-theme .footerBrand span {
   transform: scale(1.2);
 }
 
-/* ---------- FEATURES ---------- */
+/* ===== FEATURES ===== */
 .features {
   padding: 70px 0 80px;
   position: relative;
@@ -932,7 +896,7 @@ body.light-theme .footerBrand span {
   line-height: 1.6;
 }
 
-/* ---------- BULK ---------- */
+/* ===== BULK ===== */
 .bulk {
   padding: 70px 0 80px;
   position: relative;
@@ -1003,7 +967,7 @@ body.light-theme .footerBrand span {
   flex-shrink: 0;
 }
 
-/* ---------- LOCATION ---------- */
+/* ===== LOCATION ===== */
 .location {
   padding: 70px 0 80px;
   position: relative;
@@ -1045,12 +1009,11 @@ body.light-theme .footerBrand span {
 .phone:hover {
   color: var(--text-primary);
 }
-
 .locationMap {
   border-radius: var(--radius-md);
   overflow: hidden;
   border: 1px solid var(--border-glass);
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 16/10;
   background: var(--bg-card);
   transition: var(--transition);
 }
@@ -1065,7 +1028,7 @@ body.light-theme .footerBrand span {
   filter: grayscale(0.1) contrast(1.05);
 }
 
-/* ---------- CTA BANNER ---------- */
+/* ===== CTA BANNER ===== */
 .ctaBanner {
   padding: 50px 0 70px;
   position: relative;
@@ -1116,7 +1079,7 @@ body.light-theme .footerBrand span {
   z-index: 1;
 }
 
-/* ---------- FOOTER ---------- */
+/* ===== FOOTER ===== */
 .footer {
   padding: 32px 0 24px;
   border-top: 1px solid rgba(255, 255, 255, 0.04);
@@ -1159,11 +1122,7 @@ body.light-theme .footerBrand span {
   transform: translateY(-2px);
 }
 
-/* ============================================================
-   RESPONSIVE BREAKPOINTS
-   ============================================================ */
-
-/* ----- 1024px and below ----- */
+/* ===== RESPONSIVE ===== */
 @media (max-width: 1024px) {
   .heroGrid {
     grid-template-columns: 1fr;
@@ -1198,9 +1157,7 @@ body.light-theme .footerBrand span {
   }
 }
 
-/* ----- 768px and below (tablet / mobile) ----- */
 @media (max-width: 768px) {
-  /* Navbar */
   .navbarLinks {
     position: fixed;
     top: 0;
@@ -1236,7 +1193,6 @@ body.light-theme .footerBrand span {
     width: 100%;
     justify-content: center;
   }
-
   .hero {
     padding: 110px 0 60px;
   }
@@ -1259,7 +1215,6 @@ body.light-theme .footerBrand span {
   .heroFloatText small {
     font-size: 0.6rem;
   }
-
   .productsGrid {
     grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
     gap: 14px;
@@ -1267,8 +1222,6 @@ body.light-theme .footerBrand span {
   .productImage {
     height: 110px;
   }
-
-  /* Carousel */
   .carouselBtn {
     width: 36px;
     height: 36px;
@@ -1296,7 +1249,6 @@ body.light-theme .footerBrand span {
   .carouselSlide .productCardDesc {
     font-size: 0.75rem;
   }
-
   .bulkInner {
     padding: 28px 20px;
     text-align: center;
@@ -1310,18 +1262,15 @@ body.light-theme .footerBrand span {
   .bulkAction .btn {
     width: 100%;
   }
-
   .ctaBannerInner {
     padding: 28px 20px;
   }
-
   .footerInner {
     flex-direction: column;
     text-align: center;
   }
 }
 
-/* ----- 480px and below (small phones) ----- */
 @media (max-width: 480px) {
   .heroTitle {
     font-size: 1.8rem;
@@ -1350,7 +1299,6 @@ body.light-theme .footerBrand span {
   .heroFloatText small {
     font-size: 0.55rem;
   }
-
   .productsGrid {
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
@@ -1370,8 +1318,6 @@ body.light-theme .footerBrand span {
   .productCardDesc {
     font-size: 0.65rem;
   }
-
-  /* Carousel Mobile */
   .carouselBtn {
     width: 30px;
     height: 30px;
@@ -1400,7 +1346,6 @@ body.light-theme .footerBrand span {
     width: 8px;
     height: 8px;
   }
-
   .btn {
     padding: 10px 18px;
     font-size: 0.8rem;
