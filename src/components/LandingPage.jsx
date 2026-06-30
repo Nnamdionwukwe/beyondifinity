@@ -40,7 +40,7 @@ const baseProducts = [
     icon: <FaUsb />,
     badge: "Best Seller",
     image:
-      "https://images.unsplash.com/photo-1626285861696-9f0bf5a49c6d?w=400&h=300&fit=crop",
+      "https://cdn-img.oraimo.com/fit-in/360x360/BD/product/2025/08/07/OPN-373-BLACK.png",
   },
   {
     id: 3,
