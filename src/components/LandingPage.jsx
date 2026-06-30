@@ -17,6 +17,8 @@ import {
   FaShieldAlt,
   FaBoxes,
   FaClock,
+  FaInstagram,
+  FaTiktok,
 } from "react-icons/fa";
 import styles from "./LandingPage.module.css";
 
@@ -329,6 +331,10 @@ const LandingPage = () => {
   const whatsappLink =
     "https://wa.me/2349152847491?text=Hello%20BeyondInfinity%20%F0%9F%91%8B%2C%20I%20want%20to%20buy%20some%20phone%20accessories!";
   const mapLink = "https://maps.app.goo.gl/Qft8yYY927inBUKV6?g_st=ic";
+  const IG =
+    "https://www.instagram.com/beyondinfiniti__?igsh=YjU2MHN5eXA1MTFr&utm_source=qr";
+  const TikTok =
+    "https://www.tiktok.com/@beyondinfinity007?_r=1&_t=ZS-97d87MtUc44";
 
   return (
     <div className={styles.pageWrapper}>
@@ -793,6 +799,22 @@ const LandingPage = () => {
                 aria-label="WhatsApp"
               >
                 <FaWhatsapp />
+              </a>
+              <a
+                href={IG}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+              >
+                <FaInstagram />
+              </a>
+              <a
+                href={TikTok}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="TikTok"
+              >
+                <FaTiktok />
               </a>
               <a
                 href={mapLink}
