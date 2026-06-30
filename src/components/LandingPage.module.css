@@ -1319,6 +1319,7 @@ body.light-theme .btnSecondary:hover {
   }
   .productCard {
     padding: 12px 8px;
+    height: 250px;
   }
   .productImage {
     height: 150px;
@@ -1332,6 +1333,9 @@ body.light-theme .btnSecondary:hover {
   }
   .productCardDesc {
     font-size: 0.65rem;
+  }
+  .carouselWrapper {
+    height: 300px;
   }
   .carouselBtn {
     width: 30px;
