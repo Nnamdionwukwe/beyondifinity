@@ -100,30 +100,30 @@ const carouselProducts = [
   ...baseProducts,
   {
     id: 9,
-    name: "Wireless Charger",
+    name: "Swiss Charger",
     desc: "Qi-compatible · Fast charge · LED indicator",
     icon: <FaPlug />,
     badge: "New",
     image:
-      "https://images.unsplash.com/photo-1617788138017-80ad40651399?w=400&h=300&fit=crop",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTySCHzulTg3SwtryQO32L6hNZZX26d0bN4OEVnVeKJ9w&s",
   },
   {
     id: 10,
-    name: "Smart Watch",
+    name: "Wall Charger",
     desc: "Fitness tracker · AMOLED · GPS",
     icon: <FaClock />,
     badge: "Premium",
     image:
-      "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=400&h=300&fit=crop",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmADmKjSwe5t0JxDFiiuoQX0lcdXFwRGliBiUVsFMgTA&s",
   },
   {
     id: 11,
-    name: "Bluetooth Speaker",
+    name: "MagSafe Wireless",
     desc: "Portable · 360° sound · Waterproof",
     icon: <FaHeadphones />,
     badge: "Bestseller",
     image:
-      "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400&h=300&fit=crop",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStil49kz7q7uNUpxPSbdLc6H0asOUPlEdlBwJIdCL6wg&s=10",
   },
 ];
 
