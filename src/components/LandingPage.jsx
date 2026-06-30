@@ -538,7 +538,7 @@ const LandingPage = () => {
                   className={styles.productImage}
                   loading="lazy"
                 />
-                <span className={styles.productCardIcon}>{product.icon}</span>
+                {/* <span className={styles.productCardIcon}>{product.icon}</span> */}
                 <div className={styles.productCardName}>{product.name}</div>
                 <div className={styles.productCardDesc}>{product.desc}</div>
                 <span className={styles.productCardBadge}>{product.badge}</span>
