@@ -20,7 +20,9 @@ import {
 } from "react-icons/fa";
 import styles from "./LandingPage.module.css";
 
-// Product Data with Realistic Images (Base Array)
+const image = "/11.JPG";
+
+// ─── Product Data ──────────────────────────────────────────────
 const baseProducts = [
   {
     id: 1,
@@ -29,7 +31,7 @@ const baseProducts = [
     icon: <FaApple />,
     badge: "Popular",
     image:
-      "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=400&h=300&fit=crop",
+      "https://cdn-img.oraimo.com/fit-in/360x360/MA/product/2026/04/14/OTW-631-SPACEGREY-MAIN.png",
   },
   {
     id: 2,
@@ -46,8 +48,7 @@ const baseProducts = [
     desc: "10K–30K mAh · Fast charge · LED display",
     icon: <FaBatteryFull />,
     badge: "New",
-    image:
-      "https://images.unsplash.com/photo-1609592425321-7ba0976b91d2?w=400&h=300&fit=crop",
+    image: "/11.JPG",
   },
   {
     id: 4,
@@ -96,7 +97,6 @@ const baseProducts = [
   },
 ];
 
-// Extended Product Array for the Carousel (Showcasing more items)
 const carouselProducts = [
   ...baseProducts,
   {
@@ -128,9 +128,7 @@ const carouselProducts = [
   },
 ];
 
-// ============================================================
-// IMAGE CAROUSEL COMPONENT
-// ============================================================
+// ─── Image Carousel Component ────────────────────────────────
 const ImageCarousel = ({ items }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
@@ -149,7 +147,6 @@ const ImageCarousel = ({ items }) => {
     setCurrentIndex(index);
   };
 
-  // Autoplay logic
   useEffect(() => {
     if (isPaused) {
       if (intervalRef.current) clearInterval(intervalRef.current);
@@ -159,7 +156,6 @@ const ImageCarousel = ({ items }) => {
     return () => clearInterval(intervalRef.current);
   }, [isPaused, nextSlide]);
 
-  // Touch events for mobile swipe
   const handleTouchStart = (e) => {
     setTouchStartX(e.touches[0].clientX);
   };
@@ -221,7 +217,9 @@ const ImageCarousel = ({ items }) => {
         {items.map((_, index) => (
           <button
             key={index}
-            className={`${styles.dot} ${index === currentIndex ? styles.active : ""}`}
+            className={`${styles.dot} ${
+              index === currentIndex ? styles.active : ""
+            }`}
             onClick={() => goToSlide(index)}
             aria-label={`Go to slide ${index + 1}`}
           />
@@ -231,9 +229,7 @@ const ImageCarousel = ({ items }) => {
   );
 };
 
-// ============================================================
-// MAIN LANDING PAGE COMPONENT
-// ============================================================
+// ─── Main Landing Page ────────────────────────────────────────
 const LandingPage = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -342,7 +338,7 @@ const LandingPage = () => {
       <div className={`${styles.glowOrb} ${styles.glowOrb2}`}></div>
       <div className={`${styles.glowOrb} ${styles.glowOrb3}`}></div>
 
-      {/* ====== NAVBAR ====== */}
+      {/* ─── Navbar ─── */}
       <nav
         ref={navbarRef}
         className={`${styles.navbar} ${isScrolled ? styles.scrolled : ""}`}
@@ -353,8 +349,11 @@ const LandingPage = () => {
             <span className={styles.navbarBrandLogo}>BEYOND INFINITY</span>
           </a>
 
+          {/* Use a single class for open state: navbarLinksOpen */}
           <ul
-            className={`${styles.navbarLinks} ${isNavOpen ? styles.open : ""}`}
+            className={`${styles.navbarLinks} ${
+              isNavOpen ? styles.navbarLinksOpen : ""
+            }`}
           >
             <li>
               <a href="#products" onClick={closeNav}>
@@ -377,8 +376,11 @@ const LandingPage = () => {
               </a>
             </li>
             <li>
+              {/* Use a single class for light theme: themeToggleLight */}
               <button
-                className={`${styles.themeToggle} ${theme === "light" ? styles.light : ""}`}
+                className={`${styles.themeToggle} ${
+                  theme === "light" ? styles.themeToggleLight : ""
+                }`}
                 onClick={toggleTheme}
                 aria-label="Toggle theme"
               >
@@ -403,7 +405,7 @@ const LandingPage = () => {
           </ul>
 
           <button
-            className={`${styles.navbarHamburger} ${isNavOpen ? styles.active : ""}`}
+            className={styles.navbarHamburger}
             onClick={toggleNav}
             aria-label="Toggle navigation"
           >
@@ -412,7 +414,7 @@ const LandingPage = () => {
         </div>
       </nav>
 
-      {/* ====== HERO ====== */}
+      {/* ─── Hero ─── */}
       <section className={styles.hero} id="hero">
         <div className={styles.container}>
           <div className={styles.heroGrid}>
@@ -504,7 +506,7 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* ====== PRODUCTS ====== */}
+      {/* ─── Products ─── */}
       <section className={styles.products} id="products">
         <div className={styles.container}>
           <div className={styles.productsHeader}>
@@ -525,10 +527,8 @@ const LandingPage = () => {
             </a>
           </div>
 
-          {/* Slideable Carousel Section */}
           <ImageCarousel items={carouselProducts} />
 
-          {/* Existing Grid Below (Optional, keeping it for completeness) */}
           <div className={styles.productsGrid}>
             {baseProducts.map((product) => (
               <div key={product.id} className={styles.productCard}>
@@ -548,7 +548,7 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* ====== FEATURES ====== */}
+      {/* ─── Features ─── */}
       <section className={styles.features} id="features">
         <div className={styles.container}>
           <div style={{ textAlign: "center", marginBottom: "8px" }}>
@@ -622,7 +622,7 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* ====== BULK ====== */}
+      {/* ─── Bulk ─── */}
       <section className={styles.bulk} id="bulk">
         <div className={styles.container}>
           <div className={styles.bulkInner}>
@@ -673,7 +673,7 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* ====== LOCATION ====== */}
+      {/* ─── Location ─── */}
       <section className={styles.location} id="location">
         <div className={styles.container}>
           <div className={styles.locationGrid}>
@@ -742,7 +742,7 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* ====== CTA BANNER ====== */}
+      {/* ─── CTA Banner ─── */}
       <section className={styles.ctaBanner}>
         <div className={styles.container}>
           <div className={styles.ctaBannerInner}>
@@ -776,7 +776,7 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* ====== FOOTER ====== */}
+      {/* ─── Footer ─── */}
       <footer className={styles.footer}>
         <div className={styles.container}>
           <div className={styles.footerInner}>

@@ -10,7 +10,7 @@ body {
   overflow-x: hidden;
 }
 
-/* ===== DARK THEME (default) ===== */
+/* ===== DARK THEME ===== */
 :root {
   --bg-primary: #0a0a0f;
   --bg-secondary: #12121a;
@@ -31,7 +31,7 @@ body {
   --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* ===== LIGHT THEME (on body) ===== */
+/* ===== LIGHT THEME ===== */
 body.light-theme {
   --bg-primary: #f4f6f9;
   --bg-secondary: #ffffff;
@@ -46,7 +46,6 @@ body.light-theme {
   --accent-3: #e86a92;
   --shadow-glow: 0 8px 40px rgba(90, 75, 209, 0.15);
 }
-
 body.light-theme .navbar {
   background: rgba(255, 255, 255, 0.85);
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
@@ -104,6 +103,20 @@ body.light-theme .dot.active {
   background: var(--accent-1);
   box-shadow: 0 0 12px rgba(90, 75, 209, 0.4);
 }
+body.light-theme .navbarBrand {
+  color: var(--text-primary);
+}
+body.light-theme .navbarHamburger {
+  color: var(--text-primary);
+}
+body.light-theme .btnSecondary {
+  background: rgba(0, 0, 0, 0.04);
+  color: var(--text-primary);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+body.light-theme .btnSecondary:hover {
+  background: rgba(0, 0, 0, 0.08);
+}
 
 /* ===== PAGE WRAPPER ===== */
 .pageWrapper {
@@ -155,7 +168,6 @@ body.light-theme .dot.active {
   transform: translateX(-50%);
   background: rgba(253, 121, 168, 0.15);
 }
-
 @keyframes orbFloat {
   0% {
     transform: translate(0, 0) scale(1);
@@ -389,6 +401,11 @@ body.light-theme .dot.active {
   z-index: 1001;
 }
 
+/* --- FIX: Single class for open state --- */
+.navbarLinksOpen {
+  right: 0 !important;
+}
+
 /* ===== THEME TOGGLE ===== */
 .themeToggle {
   background: var(--bg-glass);
@@ -432,8 +449,10 @@ body.light-theme .dot.active {
   transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
   box-shadow: 0 2px 10px rgba(108, 92, 231, 0.4);
 }
-.themeToggle.light .toggleThumb {
-  transform: translateX(24px);
+
+/* --- FIX: Single class for light state --- */
+.themeToggleLight .toggleThumb {
+  transform: translateX(24px) !important;
 }
 
 /* ===== HERO ===== */
@@ -791,7 +810,6 @@ body.light-theme .dot.active {
   border-radius: 100px;
   border: 1px solid rgba(0, 206, 201, 0.1);
 }
-
 .carouselBtn {
   position: absolute;
   top: 50%;
@@ -824,7 +842,6 @@ body.light-theme .dot.active {
 .carouselBtnRight {
   right: 16px;
 }
-
 .carouselDots {
   position: absolute;
   bottom: 20px;
@@ -1180,9 +1197,6 @@ body.light-theme .dot.active {
     background: rgba(255, 255, 255, 0.98);
     border-left: 1px solid rgba(0, 0, 0, 0.05);
   }
-  .navbarLinks.open {
-    right: 0;
-  }
   .navbarHamburger {
     display: block;
   }
@@ -1356,4 +1370,14 @@ body.light-theme .dot.active {
   .sectionTitle {
     font-size: 1.6rem;
   }
+}
+
+/* --- For the navbar open state --- */
+.navbarLinksOpen {
+  right: 0 !important;
+}
+
+/* --- For the theme toggle light state --- */
+.themeToggleLight .toggleThumb {
+  transform: translateX(24px) !important;
 }
