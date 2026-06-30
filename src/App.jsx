@@ -5,7 +5,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<LandingPage />} />
+        <Route path="/order" element={<LandingPage />} />
         {/* Add more routes here as your site grows */}
         {/* <Route path="/products" element={<ProductsPage />} /> */}
         {/* <Route path="/about" element={<AboutPage />} /> */}
