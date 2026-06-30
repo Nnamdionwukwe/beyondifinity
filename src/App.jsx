@@ -5,10 +5,10 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/order" element={<LandingPage />} />
-        {/* Add more routes here as your site grows */}
-        {/* <Route path="/products" element={<ProductsPage />} /> */}
-        {/* <Route path="/about" element={<AboutPage />} /> */}
+        {/* Main route */}
+        <Route path="/" element={<LandingPage />} />
+        {/* Catch‑all: redirect to home or show 404 */}
+        <Route path="*" element={<LandingPage />} />
       </Routes>
     </BrowserRouter>
   );
