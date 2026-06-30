@@ -344,7 +344,8 @@ const LandingPage = () => {
       >
         <div className={styles.container}>
           <a href="#" className={styles.navbarBrand}>
-            <span className={styles.navbarBrandIcon}>⚡</span>
+            <img className={styles.navbarBrandIcon} src="/beyondInfinity.JPG" />
+            {/* {/* <span className={styles.navbarBrandIcon}>⚡</span> */}
             <span className={styles.navbarBrandLogo}>BEYOND INFINITY</span>
           </a>
 
