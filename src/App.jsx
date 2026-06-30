@@ -6,7 +6,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         {/* Main route */}
-        <Route path="/order" element={<LandingPage />} />
+        <Route path="/" element={<LandingPage />} />
         {/* Catch‑all: redirect to home or show 404 */}
         <Route path="*" element={<LandingPage />} />
       </Routes>
