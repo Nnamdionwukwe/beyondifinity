@@ -828,6 +828,7 @@ const LandingPage = () => {
                 <FaMobileAlt />
               </a>
             </div>
+            <div className={styles.footerCopy}>Powered By GesTechCom</div>
           </div>
         </div>
       </footer>
