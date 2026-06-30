@@ -20,13 +20,11 @@ import {
 } from "react-icons/fa";
 import styles from "./LandingPage.module.css";
 
-const image = "/11.JPG";
-
 // ─── Product Data ──────────────────────────────────────────────
 const baseProducts = [
   {
     id: 1,
-    name: "iPhone Chargers",
+    name: "SpaceBuds 2 oraimo",
     desc: "Lightning · Fast charge · MFI certified",
     icon: <FaApple />,
     badge: "Popular",
@@ -540,7 +538,7 @@ const LandingPage = () => {
                 />
                 {/* <span className={styles.productCardIcon}>{product.icon}</span> */}
                 <div className={styles.productCardName}>{product.name}</div>
-                <div className={styles.productCardDesc}>{product.desc}</div>
+                {/* <div className={styles.productCardDesc}>{product.desc}</div> */}
                 <span className={styles.productCardBadge}>{product.badge}</span>
               </div>
             ))}
