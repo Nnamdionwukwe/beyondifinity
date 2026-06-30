@@ -33,7 +33,7 @@ const baseProducts = [
   },
   {
     id: 2,
-    name: "Type-C Chargers",
+    name: "OpenSnap Oraimo",
     desc: "PD 3.0 · 65W · For Android & Laptops",
     icon: <FaUsb />,
     badge: "Best Seller",
@@ -42,56 +42,57 @@ const baseProducts = [
   },
   {
     id: 3,
-    name: "Power Banks",
+    name: "OpenSnap N2 Oraimo",
     desc: "10K–30K mAh · Fast charge · LED display",
     icon: <FaBatteryFull />,
     badge: "New",
-    image: "/11.JPG",
+    image:
+      "https://cdn-img.oraimo.com/fit-in/360x360/MA/product/2026/03/16/OPN-374N-BLACK-NEW.png",
   },
   {
     id: 4,
-    name: "Earbuds",
+    name: "Oraimo PowerBox 400 Vision",
     desc: "Bluetooth 5.3 · Noise cancelling · Premium sound",
     icon: <FaHeadphones />,
     badge: "Trending",
     image:
-      "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=400&h=300&fit=crop",
+      "https://cdn-img.oraimo.com/fit-in/360x360/NG/product/2024/10/16/1080.png",
   },
   {
     id: 5,
-    name: "Phone Cases",
+    name: " Traveller 12 Byte 20000mAh",
     desc: "All models · Silicone · Rugged · Clear",
     icon: <FaMobileAlt />,
     badge: "Variety",
     image:
-      "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=400&h=300&fit=crop",
+      "https://cdn-img.oraimo.com/fit-in/360x360/KE/product/2024/09/03/OPB-1205N.png",
   },
   {
     id: 6,
-    name: "Car Chargers",
+    name: "AirDock Cooling Fan",
     desc: "Dual USB · Fast charge · 12V/24V",
     icon: <FaCar />,
     badge: "On-the-Go",
     image:
-      "https://images.unsplash.com/photo-1607807175418-75c9b7b2ddb3?w=400&h=300&fit=crop",
+      "https://cdn-img.oraimo.com/fit-in/360x360/EG/product/2026/04/20/ODF-502A-MAIN.png",
   },
   {
     id: 7,
-    name: "Phone Holders",
+    name: "BoomPop Air Oraimo",
     desc: "Dashboard · Vent · Magnetic · Universal",
     icon: <FaMapMarkerAlt />,
     badge: "Essential",
     image:
-      "https://images.unsplash.com/photo-1586178750936-8c9b1b7f2b0b?w=400&h=300&fit=crop",
+      "https://cdn-img.oraimo.com/fit-in/360x360/KE/product/2026/04/13/oraimo-Headphone-BoomPop-Air-OHP-316-GRAVITYBLACK-mainimage.png",
   },
   {
     id: 8,
-    name: "Bulk / Souvenirs",
+    name: "Watch Nova 2R 1.43",
     desc: "Party gifts · Corporate · Occasions",
     icon: <FaGift />,
     badge: "Wholesale",
     image:
-      "https://images.unsplash.com/photo-1513885535751-8b9238bd345a?w=400&h=300&fit=crop",
+      "https://cdn-img.oraimo.com/fit-in/360x360/KE/product/2026/04/13/oraimo-Headphone-BoomPop-Air-OHP-316-GRAVITYBLACK-mainimage.png",
   },
 ];
 
