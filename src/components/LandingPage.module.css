@@ -397,8 +397,12 @@ body.light-theme .btnSecondary:hover {
   color: var(--text-primary);
   font-size: 1.8rem;
   cursor: pointer;
-  padding: 4px;
+  padding: 10px 14px; /* ← increased for bigger tap area */
   z-index: 1001;
+  position: relative;
+  touch-action: manipulation;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* --- FIX: Single class for open state --- */
