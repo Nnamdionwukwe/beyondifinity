@@ -327,7 +327,7 @@ const LandingPage = () => {
     setTheme((prev) => (prev === "dark" ? "light" : "dark"));
 
   const whatsappLink =
-    "https://wa.me/2349152847491?text=Hello%20GadgetHub%20%F0%9F%91%8B%2C%20I%20want%20to%20buy%20some%20phone%20accessories!";
+    "https://wa.me/2349152847491?text=Hello%20BeyondInfinity%20%F0%9F%91%8B%2C%20I%20want%20to%20buy%20some%20phone%20accessories!";
   const mapLink = "https://maps.app.goo.gl/Qft8yYY927inBUKV6?g_st=ic";
 
   return (
@@ -345,7 +345,6 @@ const LandingPage = () => {
         <div className={styles.container}>
           <a href="#" className={styles.navbarBrand}>
             <img className={styles.navbarBrandIcon} src="/beyondInfinity.JPG" />
-            {/* {/* <span className={styles.navbarBrandIcon}>⚡</span> */}
             <span className={styles.navbarBrandLogo}>BEYOND INFINITY</span>
           </a>
 
