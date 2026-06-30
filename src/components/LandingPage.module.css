@@ -1323,6 +1323,9 @@ body.light-theme .btnSecondary:hover {
   .productImage {
     height: 160px;
   }
+  .productImage2 {
+    height: 120px;
+  }
   .productCardIcon {
     font-size: 1.3rem;
   }
