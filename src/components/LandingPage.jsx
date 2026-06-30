@@ -92,7 +92,7 @@ const baseProducts = [
     icon: <FaGift />,
     badge: "Wholesale",
     image:
-      "https://cdn-img.oraimo.com/fit-in/360x360/KE/product/2026/04/13/oraimo-Headphone-BoomPop-Air-OHP-316-GRAVITYBLACK-mainimage.png",
+      "https://cdn-img.oraimo.com/fit-in/360x360/KE/product/2026/04/28/oraimo-Smart-Watch-Watch-Nova-2R-OSW-834-mainimage.png",
   },
 ];
 
