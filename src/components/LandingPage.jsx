@@ -534,7 +534,7 @@ const LandingPage = () => {
                 <img
                   src={product.image}
                   alt={product.name}
-                  className={styles.productImage2}
+                  className={styles.productImage}
                   loading="lazy"
                 />
                 {/* <span className={styles.productCardIcon}>{product.icon}</span> */}
